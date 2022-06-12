@@ -40,6 +40,10 @@ async function run() {
         await client.connect();
         const serviceCollection = client.db("geniusCar").collection("service");
         const orederCollection = client.db("geniusCar").collection("order");
+        //-----------------------//
+        //project collection for portfolio website
+        const projectCollection = client.db("geniusCar").collection("project");
+        //-----------------------//
 
 
         //AUTH
@@ -50,6 +54,28 @@ async function run() {
             });
             res.send({ accessToken });
         });
+
+        //----------------------------------------//
+        //PROJECT_COLLECTION API
+
+
+        //load all projects from database
+        app.get('/project', async (req, res) => {
+            const query = {};
+            const cursor = projectCollection.find(query);
+            const projects = await cursor.toArray();
+            res.send(projects);
+        });
+
+
+        //load specific project from database
+        app.get('/project/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const project = await projectCollection.findOne(query);
+            res.send(project);
+        })
+        //----------------------------------------//
 
 
         //SERVICES API
