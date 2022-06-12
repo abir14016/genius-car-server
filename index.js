@@ -9,7 +9,7 @@ const app = express();
 
 //middleware
 app.use(cors({
-    origin: 'https://abir-hasan-portfolio.netlify.app/',
+    origin: 'https://abir-hasan-portfolio.netlify.app',
 }));
 app.use(express.json());
 
