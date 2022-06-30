@@ -8,9 +8,10 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 //middleware
-app.use(cors({
-    origin: 'https://abir-hasan-portfolio.netlify.app',
-}));
+// app.use(cors({
+//     origin: 'https://abir-hasan-portfolio.netlify.app',
+// }));
+app.use(cors());
 app.use(express.json());
 
 
